@@ -31,11 +31,13 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         
         sceneRenderer.delegate = self
         
-        if let ship = scene.rootNode.childNode(withName: "ship", recursively: true) {
-            ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
-        }
-        
         sceneRenderer.scene = scene
+    }
+    
+    func launchRocket() {
+        if let ship = scene.rootNode.childNode(withName: "ship", recursively: true) {
+            ship.runAction(SCNAction.repeatForever(SCNAction.move(by: SCNVector3(0, 0, 20), duration: 5)))
+        }
     }
     
     func highlightNodes(atPoint point: CGPoint) {
