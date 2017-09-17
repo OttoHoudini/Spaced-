@@ -26,6 +26,9 @@
 		1FF491AD1F6B73C20081B0B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FF491781F6B73C10081B0B0 /* Assets.xcassets */; };
 		1FF491AE1F6B73C20081B0B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FF491781F6B73C10081B0B0 /* Assets.xcassets */; };
 		1FF491AF1F6B73C20081B0B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FF491781F6B73C10081B0B0 /* Assets.xcassets */; };
+		1FF491BC1F6B8BA50081B0B0 /* SimdExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF491BB1F6B8BA50081B0B0 /* SimdExtensions.swift */; };
+		1FF491BD1F6B8BA50081B0B0 /* SimdExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF491BB1F6B8BA50081B0B0 /* SimdExtensions.swift */; };
+		1FF491BE1F6B8BA50081B0B0 /* SimdExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF491BB1F6B8BA50081B0B0 /* SimdExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,7 @@
 		1FF491A11F6B73C20081B0B0 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		1FF491A41F6B73C20081B0B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FF491A61F6B73C20081B0B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FF491BB1F6B8BA50081B0B0 /* SimdExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimdExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 		1FF491751F6B73C10081B0B0 /* Spaced! Shared */ = {
 			isa = PBXGroup;
 			children = (
+				1FF491BB1F6B8BA50081B0B0 /* SimdExtensions.swift */,
 				1FF491761F6B73C10081B0B0 /* GameController.swift */,
 				1FF491771F6B73C10081B0B0 /* Art.scnassets */,
 				1FF491781F6B73C10081B0B0 /* Assets.xcassets */,
@@ -277,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FF491BD1F6B8BA50081B0B0 /* SimdExtensions.swift in Sources */,
 				1FF491831F6B73C10081B0B0 /* GameViewController.swift in Sources */,
 				1FF491A71F6B73C20081B0B0 /* GameController.swift in Sources */,
 				1FF491811F6B73C10081B0B0 /* AppDelegate.swift in Sources */,
@@ -287,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FF491BE1F6B8BA50081B0B0 /* SimdExtensions.swift in Sources */,
 				1FF491941F6B73C10081B0B0 /* GameViewController.swift in Sources */,
 				1FF491A81F6B73C20081B0B0 /* GameController.swift in Sources */,
 				1FF491921F6B73C10081B0B0 /* AppDelegate.swift in Sources */,
@@ -297,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FF491BC1F6B8BA50081B0B0 /* SimdExtensions.swift in Sources */,
 				1FF491A21F6B73C20081B0B0 /* GameViewController.swift in Sources */,
 				1FF491A91F6B73C20081B0B0 /* GameController.swift in Sources */,
 				1FF491A01F6B73C20081B0B0 /* AppDelegate.swift in Sources */,
