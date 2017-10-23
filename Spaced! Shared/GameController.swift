@@ -296,7 +296,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         }
         
         if wantsTorqueComponent {
-            let torqueComponent = TorqueComponent(magnitude: 50, angularDamping: 50)
+            let torqueComponent = TorqueComponent(magnitude: 25, angularDamping: 15)
             box.addComponent(torqueComponent)
         }
         
