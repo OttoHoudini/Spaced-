@@ -6,7 +6,6 @@
  A couple extensions for simd types.
  */
 
-import Foundation
 import simd
 
 extension simd_float2 {
@@ -63,4 +62,3 @@ extension simd_float4x4 {
         }
     }
 }
-

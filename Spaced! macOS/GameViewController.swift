@@ -6,8 +6,28 @@
 //  Copyright © 2017 Jeffery Jensen. All rights reserved.
 //
 
-import Cocoa
+//import Cocoa
 import SceneKit
+
+private enum TorqueDirection : UInt16 {
+    case yawLeft = 0
+    case yawRight = 2
+    case pitchUp = 13
+    case pitchDown = 1
+    case rollLeft = 12
+    case rollRight = 14
+    
+    var vector : float3 {
+        switch self {
+        case .yawLeft: return float3(0, 0, 1)
+        case .yawRight: return float3(0, 0, -1)
+        case .pitchUp: return float3(-1, 0, 0)
+        case .pitchDown: return float3(1, 0, 0)
+        case .rollLeft: return float3(0, -1, 0)
+        case .rollRight: return float3(0, 1, 0)
+        }
+    }
+}
 
 class GameViewController: NSViewController {
     
@@ -40,14 +60,43 @@ class GameViewController: NSViewController {
     
     @objc
     func handleClick(_ gestureRecognizer: NSGestureRecognizer) {
-        gameController.launchRocket()
+    }
+    
+    override func flagsChanged(with event: NSEvent) {
+        if event.modifierFlags.contains(.shift) {
+            gameController.currentRocket.setThrottleState(.up)
+            
+        } else if event.modifierFlags.contains(.control) {
+            gameController.currentRocket.setThrottleState(.down)
+            
+        } else {
+            gameController.currentRocket.setThrottleState(.hold)
+        }
+    }
+    
+    override func keyDown(with event: NSEvent) {
+        if event.characters == "z", !event.isARepeat {
+            gameController.currentRocket.setThrottleState(.off)
+        }
+        
+        if let direction = TorqueDirection(rawValue: event.keyCode), !event.isARepeat {
+            gameController.currentRocket.torqueDirection += direction.vector
+        }
+        
+        if let characters = event.characters, characters.contains("t"), !event.isARepeat {
+            gameController.currentRocket.isSASActive = !gameController.currentRocket.isSASActive
+        }
+    }
+    
+    override func keyUp(with event: NSEvent) {
+        if let direction = TorqueDirection(rawValue: event.keyCode), !event.isARepeat {
+            gameController.currentRocket.torqueDirection -= direction.vector
+        }
     }
     
     func keyDown(_ view: NSView, event theEvent: NSEvent) -> Bool {
         var cameraDirection = self.gameController!.cameraDirection
-        
         var updateCamera = false
-        let updateCharacter = false
         
         switch theEvent.keyCode {
         case 13:
@@ -106,10 +155,6 @@ class GameViewController: NSViewController {
             return true
         default:
             return false
-        }
-        
-        if updateCharacter {
-            
         }
         
         if updateCamera {

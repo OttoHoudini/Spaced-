@@ -7,6 +7,7 @@
 //
 
 import SceneKit
+import GameplayKit
 
 #if os(watchOS)
     import WatchKit
@@ -18,6 +19,12 @@ import SceneKit
     typealias SCNColor = UIColor
 #endif
 
+let BitmaskRocketCamera     = Int(1 << 2)
+let BitmaskNavigationCamera = Int(1 << 3)
+let BitmaskMapCamera        = Int(1 << 4)
+let BitmaskGround           = Int(1 << 5)
+let BitmaskPart             = Int(1 << 6)
+
 class GameController: NSObject, SCNSceneRendererDelegate {
 
     // Global settings
@@ -28,7 +35,8 @@ class GameController: NSObject, SCNSceneRendererDelegate {
     let scene: SCNScene
     let sceneRenderer: SCNSceneRenderer
     
-    private var activeShip: SCNNode?
+    var currentRocket = RocketEntity()
+    private var controlNode: SCNNode?
     private var currentSphereOfInfluence: SCNNode!
 
     private var cameraNode = SCNNode()
@@ -37,24 +45,34 @@ class GameController: NSObject, SCNSceneRendererDelegate {
     private var lastActiveCameraFrontDirection = simd_float3.zero
     private let spaceCamera = SCNNode()
     private let atmosphereCamera = SCNNode()
-
+    
+    /// Keeps track of the time for use in the update method.
+    var previousUpdateTime: TimeInterval = 0
+    
     init(sceneRenderer renderer: SCNSceneRenderer) {
         sceneRenderer = renderer
         scene = SCNScene(named: "Art.scnassets/ship.scn")!
         
+
         super.init()
-        
-        activeShip = scene.rootNode.childNode(withName: "ship", recursively: true)
-        currentSphereOfInfluence = scene.rootNode.childNode(withName: "sphere", recursively: true)
-        
+        setUpEntities()
         setupCamera()
-        
         sceneRenderer.delegate = self
         sceneRenderer.scene = scene
     }
     
-    func launchRocket() {
-        activeShip?.physicsBody?.applyForce(SCNVector3(0, 0, 20), asImpulse: true)
+    func setUpEntities() {
+        // Create entities with components using the factory method.
+        
+        currentSphereOfInfluence = scene.rootNode.childNode(withName: "sphere", recursively: true)!
+        currentSphereOfInfluence.physicsBody?.categoryBitMask = BitmaskGround
+        currentSphereOfInfluence.physicsBody?.collisionBitMask = BitmaskPart
+        
+        let ship = makeBoxEntity(forNodeWithName: "ship", wantsTorqueComponent: true, wantsThrustComponent: true, wantsFuelComponent: true)
+        
+        controlNode = ship.component(ofType: GeometryComponent.self)?.node
+        currentRocket.partEntities = [ship]
+        //currentRocket.setupJoints(scene)
     }
     
     // MARK: - Camera Controls
@@ -89,7 +107,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
             inWorldSpace: true, with: { (_ node: SCNNode, _ position: SCNVector3) -> SCNVector3 in
                 guard let strongSelf = weakSelf else { return position }
                 
-                guard let worldPosition = strongSelf.activeShip?.presentation.worldPosition else { return position }
+                guard let worldPosition = strongSelf.controlNode?.presentation.worldPosition else { return position }
                 return worldPosition
         })
         
@@ -132,7 +150,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
             inWorldSpace: true, with: { (_ node: SCNNode, _ position: SCNVector3) -> SCNVector3 in
                 guard let strongSelf = weakSelf else { return position }
                 
-                guard let worldPosition = strongSelf.activeShip?.presentation.worldPosition else { return position }
+                guard let worldPosition = strongSelf.controlNode?.presentation.worldPosition else { return position }
                 return worldPosition
         })
         
@@ -211,41 +229,77 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         SCNTransaction.commit()
     }
 
-    func highlightNodes(atPoint point: CGPoint) {
-        let hitResults = self.sceneRenderer.hitTest(point, options: [:])
-        for result in hitResults {
-            // get its material
-            guard let material = result.node.geometry?.firstMaterial else {
-                return
-            }
-            
-            // highlight it
+    func highlight(node: SCNNode) {
+        // get its material
+        let material =  node.geometry!.firstMaterial!
+        
+        // highlight it
+        SCNTransaction.begin()
+        SCNTransaction.animationDuration = 0.5
+        
+        // on completion - unhighlight
+        SCNTransaction.completionBlock = {
             SCNTransaction.begin()
             SCNTransaction.animationDuration = 0.5
             
-            // on completion - unhighlight
-            SCNTransaction.completionBlock = {
-                SCNTransaction.begin()
-                SCNTransaction.animationDuration = 0.5
-                
-                material.emission.contents = SCNColor.black
-                
-                SCNTransaction.commit()
-            }
-            
-            material.emission.contents = SCNColor.red
+            material.emission.contents = NSColor.black
             
             SCNTransaction.commit()
         }
+        
+        material.emission.contents = NSColor.red
+        
+        SCNTransaction.commit()
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        // Called before each frame is rendered
+    /**
+     Updates every frame, and keeps components in the particle component
+     system up to date.
+     */
+    func renderer(_: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        // Calculate the time change since the previous update.
+        let timeSincePreviousUpdate = time - previousUpdateTime
         
-//        if let ship = activeShip {
-//            let newCamera = length(ship.presentation.simdWorldPosition) >= 150 ? "spaceCam" : "atmosphereCam"
-//            setActiveCamera(newCamera, animationDuration: GameController.DefaultCameraTransitionDuration)
-//        }
+        currentRocket.update(deltaTime: timeSincePreviousUpdate)
+        
+        // Update the previous update time to keep future calculations accurate.
+        previousUpdateTime = time
     }
-
+    
+    func makeBoxEntity(forNodeWithName name: String, wantsTorqueComponent: Bool = false, wantsThrustComponent: Bool = false, wantsFuelComponent: Bool = false, withParticleComponentNamed particleComponentName: String? = nil) -> GKEntity {
+        
+        // Create the box entity and grab its node from the scene.
+        let box = GKEntity()
+        guard let boxNode = scene.rootNode.childNode(withName: name, recursively: false) else {
+            fatalError("Making box with name \(name) failed because the GameScene scene file contains no nodes with that name.")
+        }
+        
+        // Create and attach a geometry component to the box.
+        let geometryComponent = GeometryComponent(node: boxNode)
+        box.addComponent(geometryComponent)
+        
+        // If requested, create and attach a particle component.
+        if let particleComponentName = particleComponentName {
+            let particleComponent = ParticleComponent(particleName: particleComponentName)
+            box.addComponent(particleComponent)
+        }
+        
+        // If requested, create and attach a thrust component.
+        if wantsThrustComponent {
+            let thrustComponent = ThrustComponent(rocketEntity: currentRocket, maxThrust: 75, fuelconsumptionRate: 1.0)
+            box.addComponent(thrustComponent)
+        }
+        
+        if wantsFuelComponent {
+            let fuelComponent = FuelTankComponent(rocket: currentRocket, maxAmount: 20)
+            box.addComponent(fuelComponent)
+        }
+        
+        if wantsTorqueComponent {
+            let torqueComponent = TorqueComponent(magnitude: 50, angularDamping: 50)
+            box.addComponent(torqueComponent)
+        }
+        
+        return box
+    }
 }
