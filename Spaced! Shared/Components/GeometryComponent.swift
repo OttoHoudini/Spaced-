@@ -32,20 +32,4 @@ class GeometryComponent: GKSCNNodeComponent {
     func applyTorque(_ torque: SCNVector4, asImpulse impulse: Bool) {
         node.physicsBody?.applyTorque(torque, asImpulse: impulse)
     }
-    
-
-}
-
-extension SCNNode {
-    func boundingBoxAnchor(_ axis: simd_float3 = simd_float3(0, 1, 0)) -> simd_float3 {
-        let boundingBox = self.boundingBox
-        
-        let min = simd_float3(boundingBox.min)
-        let max = simd_float3(boundingBox.max)
-        let size = max - min // simd_float3(max.x + min.x, max.y - min.y, max.z - min.z)
-        let transpose = axis * (size / 2)
-        let center = (max + min) / 2 // simd_float3((max.x + min.x) / 2, (max.y + min.y) / 2, (max.z + min.z) / 2)
-        
-        return center + transpose
-    }
 }

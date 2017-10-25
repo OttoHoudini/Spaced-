@@ -16,6 +16,20 @@ func * (left: SCNMatrix4, right: SCNVector3) -> SCNVector3 { //multiply mat4 by 
     )
 }
 
+extension SCNNode {
+    func boundingBoxAnchor(_ axis: simd_float3 = simd_float3(0, 1, 0)) -> simd_float3 {
+        let boundingBox = self.boundingBox
+        
+        let min = simd_float3(boundingBox.min)
+        let max = simd_float3(boundingBox.max)
+        let size = max - min // simd_float3(max.x + min.x, max.y - min.y, max.z - min.z)
+        let transpose = axis * (size / 2)
+        let center = (max + min) / 2 // simd_float3((max.x + min.x) / 2, (max.y + min.y) / 2, (max.z + min.z) / 2)
+        
+        return center + transpose
+    }
+}
+
 extension SCNPhysicsSliderJoint {
     
     public class func fixed(bodyA: SCNPhysicsBody, axisA: SCNVector3, anchorA: SCNVector3, bodyB: SCNPhysicsBody, axisB: SCNVector3, anchorB: SCNVector3) -> SCNPhysicsSliderJoint {
