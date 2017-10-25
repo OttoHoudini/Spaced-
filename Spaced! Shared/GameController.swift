@@ -179,7 +179,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
 
         atmosphereLookAtTarget.addChildNode(node)
         node.name = "atmosphereCam"
-        node.simdPosition = simd_float3(15, 0, 0)
+        node.simdPosition = simd_float3(30, 0, 0)
         node.constraints = [atmosphereOrientationConstraint, lookAtTarget]
         node.simdEulerAngles = simd_float3(1.57, 0, 1.57)
         self.scene.rootNode.addChildNode(atmosphereLookAtTarget)
@@ -296,7 +296,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         }
         
         if wantsTorqueComponent {
-            let torqueComponent = TorqueComponent(magnitude: 40, angularDamping: 0.5)
+            let torqueComponent = TorqueComponent(magnitude: 40, angularDamping: 0.75)
             box.addComponent(torqueComponent)
         }
         
