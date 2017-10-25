@@ -72,7 +72,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         
         controlNode = ship.component(ofType: GeometryComponent.self)?.node
         currentRocket.partEntities = [ship]
-        //currentRocket.setupJoints(scene)
+        currentRocket.setupJoints(scene)
     }
     
     // MARK: - Camera Controls
@@ -291,7 +291,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         }
         
         if wantsFuelComponent {
-            let fuelComponent = FuelTankComponent(rocket: currentRocket, maxAmount: 20)
+            let fuelComponent = FuelTankComponent(rocket: currentRocket, maxAmount: 1000)
             box.addComponent(fuelComponent)
         }
         

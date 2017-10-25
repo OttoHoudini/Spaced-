@@ -68,7 +68,7 @@ class RocketEntity: GKEntity {
             guard let nodeA = entity.component(ofType: GeometryComponent.self)?.node,
                 let physicsBodyA = nodeA.physicsBody else { return }
 
-            var bodyBTopAnchor = simd_float3()
+            var bodyBTopAnchor = simd_float3(0, 0, 1000)
 
             if let nodeB = lowerNode {
                 guard  let physicsBodyB = nodeB.physicsBody else { return }
