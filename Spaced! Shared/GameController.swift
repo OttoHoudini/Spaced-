@@ -92,7 +92,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         self.cameraNode.camera = SCNCamera()
         self.cameraNode.name = "mainCamera"
         self.cameraNode.camera!.zNear = 1
-        self.cameraNode.camera!.zFar = 500
+        self.cameraNode.camera!.zFar = 5000
 
         self.scene.rootNode.addChildNode(cameraNode)
         
@@ -286,7 +286,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         
         // If requested, create and attach a thrust component.
         if wantsThrustComponent {
-            let thrustComponent = ThrustComponent(rocketEntity: currentRocket, maxThrust: 75, fuelconsumptionRate: 1.0)
+            let thrustComponent = ThrustComponent(rocketEntity: currentRocket, maxThrust: 50, fuelconsumptionRate: 1.0)
             box.addComponent(thrustComponent)
         }
         
@@ -296,7 +296,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         }
         
         if wantsTorqueComponent {
-            let torqueComponent = TorqueComponent(magnitude: 25, angularDamping: 15)
+            let torqueComponent = TorqueComponent(magnitude: 40, angularDamping: 1)
             box.addComponent(torqueComponent)
         }
         
