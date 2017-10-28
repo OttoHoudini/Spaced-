@@ -8,8 +8,8 @@
 
 import SpriteKit
 
-class FuelLevelOvelay: SKNode {
-    public var level = 0.25 { didSet { updateLevel(with: level) } }
+class LevelNode: SKNode {
+    public var level = 0.0 { didSet { updateLevel(with: level) } }
     private var size = CGSize(width: 75, height: 10)
     private var outline: SKShapeNode!
     private var  fill =  SKShapeNode()
@@ -24,6 +24,7 @@ class FuelLevelOvelay: SKNode {
         addChild(outline)
         
         fill.fillColor = NSColor.green
+        fill.strokeColor = NSColor.clear
         updateLevel(with: level)
         outline.addChild(fill)
     }
@@ -32,7 +33,7 @@ class FuelLevelOvelay: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateLevel(with percent: Double) {
+    private func updateLevel(with percent: Double) {
         let fillWidth = size.width * CGFloat(percent)
         fill.path = CGPath(rect: CGRect(x: -size.width / 2, y: -size.height / 2, width: fillWidth, height: size.height), transform: nil)
     }

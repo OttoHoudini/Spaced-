@@ -275,6 +275,10 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         
         currentRocket.update(deltaTime: timeSincePreviousUpdate)
         
+        // Update overlay
+        let overlay = sceneRenderer.overlaySKScene as! Overlay
+        overlay.updateFuelLevel(with: currentRocket.remainingFuel() / currentRocket.initialFuel())
+        
         // Update the previous update time to keep future calculations accurate.
         previousUpdateTime = time
     }
@@ -304,12 +308,12 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         }
         
         if wantsFuelComponent {
-            let fuelComponent = FuelTankComponent(rocket: currentRocket, maxAmount: 1000)
+            let fuelComponent = FuelTankComponent(rocket: currentRocket, maxAmount: 50)
             box.addComponent(fuelComponent)
         }
         
         if wantsTorqueComponent {
-            let torqueComponent = TorqueComponent(magnitude: 40, angularDamping: 0.75)
+            let torqueComponent = TorqueComponent(magnitude: 40, angularDamping: 0.8)
             box.addComponent(torqueComponent)
         }
         

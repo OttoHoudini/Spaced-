@@ -11,7 +11,7 @@ import GameplayKit
 class ThrottleComponent: GKComponent {
     
     /// The rate that the throttle level can be adjusted
-    private let changeRate = 1.0
+    private let changeRate = 0.5
     
     /// The throttles level amount.  It is limited from 0 to 1.
     var level = 0.0

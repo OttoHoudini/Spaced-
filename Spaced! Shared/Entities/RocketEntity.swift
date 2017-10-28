@@ -105,6 +105,10 @@ class RocketEntity: GKEntity {
         return fuelTankComponentSystem.components.map {$0.remainingFuel}.reduce(0.0, +)
     }
     
+    func initialFuel() -> Double {
+        return fuelTankComponentSystem.components.map {$0.maxFuelAmount}.reduce(0.0, +)
+    }
+    
     override func update(deltaTime seconds: TimeInterval) {
         throttleComponent.update(deltaTime: seconds)
         torqueComponentSystem.update(deltaTime: seconds)

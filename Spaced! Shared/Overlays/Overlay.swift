@@ -9,7 +9,7 @@
 import SpriteKit
 
 class Overlay: SKScene {
-    private let fuelNode = FuelLevelOvelay()
+    private let fuelNode = LevelNode()
     
     init(size: CGSize, controller: GameController) {
         super.init(size: size)
@@ -37,7 +37,7 @@ class Overlay: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateFuel(with level: Double) {
-        fuelNode.updateLevel(with: level)
+    func updateFuelLevel(with percent: Double) {
+        fuelNode.level = percent
     }
 }
