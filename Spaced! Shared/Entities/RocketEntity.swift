@@ -101,8 +101,8 @@ class RocketEntity: GKEntity {
         return thrustComponentSystem.components.map{$0.fuelConsumptionRate}.reduce(0.0, +)
     }
     
-    func hasFuel() -> Bool {
-        return fuelTankComponentSystem.components.map {$0.remainingFuel}.reduce(0.0, +) > 0 ? true : false
+    func remainingFuel() -> Double {
+        return fuelTankComponentSystem.components.map {$0.remainingFuel}.reduce(0.0, +)
     }
     
     override func update(deltaTime seconds: TimeInterval) {

@@ -41,6 +41,5 @@ class FuelTankComponent: RocketComponent {
         let newRemainingFuel = remainingFuel - consumedFuel
         
         remainingFuel = newRemainingFuel < 0 ? 0.0 : newRemainingFuel
-        print("Fuel:  \(remainingFuel)")
     }
 }

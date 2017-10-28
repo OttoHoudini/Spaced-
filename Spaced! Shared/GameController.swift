@@ -31,11 +31,15 @@ class GameController: NSObject, SCNSceneRendererDelegate {
     static let DefaultCameraTransitionDuration = 1.0
     static let CameraOrientationSensitivity: Float = 0.025
 
-    
+    // Overlays
+    private var overlay: Overlay?
+
     let scene: SCNScene
     let sceneRenderer: SCNSceneRenderer
     
     var currentRocket = RocketEntity()
+    
+    
     private var controlNode: SCNNode?
     private var currentSphereOfInfluence: SCNNode!
 
@@ -49,15 +53,24 @@ class GameController: NSObject, SCNSceneRendererDelegate {
     /// Keeps track of the time for use in the update method.
     var previousUpdateTime: TimeInterval = 0
     
-    init(sceneRenderer renderer: SCNSceneRenderer) {
+    init(sceneRenderer renderer: SCNView) {
+        renderer.rendersContinuously = true
         sceneRenderer = renderer
+        sceneRenderer.showsStatistics = true
+
         scene = SCNScene(named: "Art.scnassets/ship.scn")!
         
-
         super.init()
+        
+        sceneRenderer.delegate = self
+        
         setUpEntities()
         setupCamera()
-        sceneRenderer.delegate = self
+        
+        // setup overlay
+        overlay = Overlay(size: renderer.bounds.size, controller: self)
+        renderer.overlaySKScene = overlay
+        
         sceneRenderer.scene = scene
     }
     

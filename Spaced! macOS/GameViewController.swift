@@ -8,6 +8,7 @@
 
 //import Cocoa
 import SceneKit
+import SpriteKit
 
 private enum TorqueDirection : UInt16 {
     case yawLeft = 0
@@ -47,10 +48,7 @@ class GameViewController: NSViewController {
         
         // Link view and controller
         gameView.viewController = self
-        
-        // Show statistics such as fps and timing information
-        self.gameView.showsStatistics = true
-        self.gameView.rendersContinuously = true
+               
         
         // Add a click gesture recognizer
         let clickGesture = NSClickGestureRecognizer(target: self, action: #selector(handleClick(_:)))
@@ -171,6 +169,13 @@ class GameViewController: NSViewController {
 class GameViewMacOS: SCNView {
     weak var viewController: GameViewController?
     
+    override func keyDown(with theEvent: NSEvent) {
+        viewController?.keyDown(with: theEvent)
+    }
+    
+    override func keyUp(with theEvent: NSEvent) {
+        viewController?.keyUp(with: theEvent)
+    }
 //    override func viewDidMoveToWindow() {
 //        //disable retina
 //        layer?.contentsScale = 1.0

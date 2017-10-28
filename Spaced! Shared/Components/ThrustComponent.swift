@@ -43,7 +43,8 @@ class ThrustComponent: RocketComponent {
     }
     
     override func update(deltaTime seconds: TimeInterval) {
-        guard let rocket = rocketEntity, rocket.throttleComponent.level > 0.0, rocket.hasFuel()  else {
+        guard let rocket = rocketEntity, rocket.throttleComponent.level > 0.0,
+            rocket.remainingFuel() > 0 else {
             return
         }
         

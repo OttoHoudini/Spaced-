@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F3ADE6D1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3ADE6C1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift */; };
+		1F3ADE6E1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3ADE6C1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift */; };
+		1F3ADE6F1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3ADE6C1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift */; };
 		1F8AE1131F9B88D000C43DC0 /* RocketEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AE1121F9A932500C43DC0 /* RocketEntity.swift */; };
 		1F8AE1141F9B88D000C43DC0 /* RocketEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AE1121F9A932500C43DC0 /* RocketEntity.swift */; };
 		1F8AE1151F9B88D100C43DC0 /* RocketEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AE1121F9A932500C43DC0 /* RocketEntity.swift */; };
@@ -34,6 +37,12 @@
 		1F8AE12C1F9B921100C43DC0 /* SceneKit Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AE12B1F9B921100C43DC0 /* SceneKit Extensions.swift */; };
 		1F8AE12D1F9B921100C43DC0 /* SceneKit Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AE12B1F9B921100C43DC0 /* SceneKit Extensions.swift */; };
 		1F8AE12E1F9B921100C43DC0 /* SceneKit Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8AE12B1F9B921100C43DC0 /* SceneKit Extensions.swift */; };
+		1FD157B41FA17754004F0A02 /* Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD157B31FA17754004F0A02 /* Overlay.swift */; };
+		1FD157B51FA17754004F0A02 /* Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD157B31FA17754004F0A02 /* Overlay.swift */; };
+		1FD157B61FA17754004F0A02 /* Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD157B31FA17754004F0A02 /* Overlay.swift */; };
+		1FD157C01FA18354004F0A02 /* Overlay.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1FD157BF1FA18354004F0A02 /* Overlay.sks */; };
+		1FD157C11FA18354004F0A02 /* Overlay.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1FD157BF1FA18354004F0A02 /* Overlay.sks */; };
+		1FD157C21FA18354004F0A02 /* Overlay.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1FD157BF1FA18354004F0A02 /* Overlay.sks */; };
 		1FF491811F6B73C10081B0B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF491801F6B73C10081B0B0 /* AppDelegate.swift */; };
 		1FF491831F6B73C10081B0B0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF491821F6B73C10081B0B0 /* GameViewController.swift */; };
 		1FF491861F6B73C10081B0B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FF491841F6B73C10081B0B0 /* Main.storyboard */; };
@@ -59,6 +68,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F3ADE6C1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelLevelOvelay.swift; sourceTree = "<group>"; };
 		1F8AE10A1F9A92FF00C43DC0 /* ThrottleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrottleComponent.swift; sourceTree = "<group>"; };
 		1F8AE10B1F9A92FF00C43DC0 /* RocketComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketComponent.swift; sourceTree = "<group>"; };
 		1F8AE10C1F9A92FF00C43DC0 /* ThrustComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrustComponent.swift; sourceTree = "<group>"; };
@@ -68,6 +78,8 @@
 		1F8AE1101F9A92FF00C43DC0 /* ParticleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticleComponent.swift; sourceTree = "<group>"; };
 		1F8AE1121F9A932500C43DC0 /* RocketEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketEntity.swift; sourceTree = "<group>"; };
 		1F8AE12B1F9B921100C43DC0 /* SceneKit Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneKit Extensions.swift"; sourceTree = "<group>"; };
+		1FD157B31FA17754004F0A02 /* Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlay.swift; sourceTree = "<group>"; };
+		1FD157BF1FA18354004F0A02 /* Overlay.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Overlay.sks; sourceTree = "<group>"; };
 		1FF491761F6B73C10081B0B0 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		1FF491771F6B73C10081B0B0 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
 		1FF491781F6B73C10081B0B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -115,6 +127,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F3ADE6B1FA3DB2000FC44A5 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				1FD157B31FA17754004F0A02 /* Overlay.swift */,
+				1FD157BF1FA18354004F0A02 /* Overlay.sks */,
+				1F3ADE6C1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift */,
+			);
+			path = Overlays;
+			sourceTree = "<group>";
+		};
 		1F8AE1091F9A92FF00C43DC0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +159,15 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		1FC700021FA2DF1D0031A40C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1FF491BB1F6B8BA50081B0B0 /* SimdExtensions.swift */,
+				1F8AE12B1F9B921100C43DC0 /* SceneKit Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1FF491701F6B73C10081B0B0 = {
 			isa = PBXGroup;
 			children = (
@@ -151,11 +182,11 @@
 		1FF491751F6B73C10081B0B0 /* Spaced! Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1FF491BB1F6B8BA50081B0B0 /* SimdExtensions.swift */,
-				1F8AE12B1F9B921100C43DC0 /* SceneKit Extensions.swift */,
 				1FF491761F6B73C10081B0B0 /* GameController.swift */,
+				1F3ADE6B1FA3DB2000FC44A5 /* Overlays */,
 				1F8AE1111F9A932500C43DC0 /* Entities */,
 				1F8AE1091F9A92FF00C43DC0 /* Components */,
+				1FC700021FA2DF1D0031A40C /* Extensions */,
 				1FF491771F6B73C10081B0B0 /* Art.scnassets */,
 				1FF491781F6B73C10081B0B0 /* Assets.xcassets */,
 			);
@@ -312,6 +343,7 @@
 				1FF491861F6B73C10081B0B0 /* Main.storyboard in Resources */,
 				1FF491891F6B73C10081B0B0 /* LaunchScreen.storyboard in Resources */,
 				1FF491AD1F6B73C20081B0B0 /* Assets.xcassets in Resources */,
+				1FD157C01FA18354004F0A02 /* Overlay.sks in Resources */,
 				1FF491AA1F6B73C20081B0B0 /* Art.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD157C11FA18354004F0A02 /* Overlay.sks in Resources */,
 				1FF491971F6B73C10081B0B0 /* Main.storyboard in Resources */,
 				1FF491AE1F6B73C20081B0B0 /* Assets.xcassets in Resources */,
 				1FF491AB1F6B73C20081B0B0 /* Art.scnassets in Resources */,
@@ -330,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD157C21FA18354004F0A02 /* Overlay.sks in Resources */,
 				1FF491A51F6B73C20081B0B0 /* Main.storyboard in Resources */,
 				1FF491AF1F6B73C20081B0B0 /* Assets.xcassets in Resources */,
 				1FF491AC1F6B73C20081B0B0 /* Art.scnassets in Resources */,
@@ -346,7 +380,9 @@
 				1F8AE1171F9B88D900C43DC0 /* RocketComponent.swift in Sources */,
 				1FF491BD1F6B8BA50081B0B0 /* SimdExtensions.swift in Sources */,
 				1F8AE1161F9B88D900C43DC0 /* ThrottleComponent.swift in Sources */,
+				1F3ADE6D1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift in Sources */,
 				1F8AE11A1F9B88D900C43DC0 /* GeometryComponent.swift in Sources */,
+				1FD157B41FA17754004F0A02 /* Overlay.swift in Sources */,
 				1FF491831F6B73C10081B0B0 /* GameViewController.swift in Sources */,
 				1F8AE12E1F9B921100C43DC0 /* SceneKit Extensions.swift in Sources */,
 				1F8AE11C1F9B88D900C43DC0 /* ParticleComponent.swift in Sources */,
@@ -366,7 +402,9 @@
 				1F8AE11E1F9B88DA00C43DC0 /* RocketComponent.swift in Sources */,
 				1FF491BE1F6B8BA50081B0B0 /* SimdExtensions.swift in Sources */,
 				1F8AE11D1F9B88DA00C43DC0 /* ThrottleComponent.swift in Sources */,
+				1F3ADE6E1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift in Sources */,
 				1F8AE1211F9B88DA00C43DC0 /* GeometryComponent.swift in Sources */,
+				1FD157B51FA17754004F0A02 /* Overlay.swift in Sources */,
 				1FF491941F6B73C10081B0B0 /* GameViewController.swift in Sources */,
 				1F8AE12C1F9B921100C43DC0 /* SceneKit Extensions.swift in Sources */,
 				1F8AE1231F9B88DA00C43DC0 /* ParticleComponent.swift in Sources */,
@@ -386,7 +424,9 @@
 				1F8AE1251F9B88DA00C43DC0 /* RocketComponent.swift in Sources */,
 				1FF491BC1F6B8BA50081B0B0 /* SimdExtensions.swift in Sources */,
 				1F8AE1241F9B88DA00C43DC0 /* ThrottleComponent.swift in Sources */,
+				1F3ADE6F1FA3DB6E00FC44A5 /* FuelLevelOvelay.swift in Sources */,
 				1F8AE1281F9B88DA00C43DC0 /* GeometryComponent.swift in Sources */,
+				1FD157B61FA17754004F0A02 /* Overlay.swift in Sources */,
 				1FF491A21F6B73C20081B0B0 /* GameViewController.swift in Sources */,
 				1F8AE12D1F9B921100C43DC0 /* SceneKit Extensions.swift in Sources */,
 				1F8AE12A1F9B88DA00C43DC0 /* ParticleComponent.swift in Sources */,
