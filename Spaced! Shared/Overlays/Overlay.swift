@@ -7,9 +7,12 @@
 //
 
 import SpriteKit
+import CoreGraphics
 
 class Overlay: SKScene {
     private let fuelNode = LevelNode()
+    public let sasNode = ToggleNode()
+    public let throttleNode = SKShapeNode()
     
     init(size: CGSize, controller: GameController) {
         super.init(size: size)
@@ -26,10 +29,17 @@ class Overlay: SKScene {
         navBallOutline.position = CGPoint(x: frame.midX, y: navSize.height / 2)
         addChild(navBallOutline)
         
-        // Fuel Level
+        sasNode.position = CGPoint(x: 120 * cos(3.14 / 4), y: 120 * sin(3.14 / 4))
+        navBallOutline.addChild(sasNode)
         
+        throttleNode.path = CGPath(ellipseIn: CGRect.init(x: -120, y: 0, width: 15, height: 8), transform: nil)
+        throttleNode.zRotation = -0.523
+        throttleNode.fillColor = NSColor.white
+        navBallOutline.addChild(throttleNode)
+        
+        // Fuel Level
         let fuelSize = fuelNode.calculateAccumulatedFrame().size
-        fuelNode.position = CGPoint(x: fuelSize.width / 2 + 10, y: frame.maxY - fuelSize.height)
+        fuelNode.position = CGPoint(x: fuelSize.width / 2 + 10, y: frame.minY + fuelSize.height + 20)
         addChild(fuelNode)
     }
     

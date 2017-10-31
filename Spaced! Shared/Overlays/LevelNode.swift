@@ -19,14 +19,14 @@ class LevelNode: SKNode {
         super.init()
         
         outline = SKShapeNode(rectOf: size)
-        outline.strokeColor = NSColor.white
-        outline.lineWidth = 2.0
+        outline.lineWidth = 0
+        outline.fillColor = NSColor.green
+        outline.alpha = 0.5
         addChild(outline)
         
         fill.fillColor = NSColor.green
-        fill.strokeColor = NSColor.clear
-        updateLevel(with: level)
-        outline.addChild(fill)
+        fill.lineWidth = 0.0
+        addChild(fill)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,7 +34,6 @@ class LevelNode: SKNode {
     }
     
     private func updateLevel(with percent: Double) {
-        let fillWidth = size.width * CGFloat(percent)
-        fill.path = CGPath(rect: CGRect(x: -size.width / 2, y: -size.height / 2, width: fillWidth, height: size.height), transform: nil)
+        fill.path = CGPath(rect: CGRect(x: -size.width / 2, y: -size.height / 2, width: size.width * CGFloat(percent), height: size.height), transform: nil)
     }
 }

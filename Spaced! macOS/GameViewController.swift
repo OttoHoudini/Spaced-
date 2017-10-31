@@ -84,6 +84,7 @@ class GameViewController: NSViewController {
         
         if let characters = event.characters, characters.contains("t"), !event.isARepeat {
             gameController.currentRocket.isSASActive = !gameController.currentRocket.isSASActive
+            (gameController.sceneRenderer.overlaySKScene as! Overlay).sasNode.isActive = gameController.currentRocket.isSASActive
         }
         
         var cameraDirection = self.gameController!.cameraDirection
