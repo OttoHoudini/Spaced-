@@ -12,8 +12,10 @@ import CoreGraphics
 class Overlay: SKScene {
     private let fuelNode = LevelNode()
     public let sasNode = ToggleNode()
-    public let throttleNode = SKShapeNode()
     
+    public let throttleNode = SKShapeNode()
+    private let throttleRotation = 35.degreesToRadians
+
     init(size: CGSize, controller: GameController) {
         super.init(size: size)
         isUserInteractionEnabled = false
@@ -32,8 +34,7 @@ class Overlay: SKScene {
         sasNode.position = CGPoint(x: 120 * cos(3.14 / 4), y: 120 * sin(3.14 / 4))
         navBallOutline.addChild(sasNode)
         
-        throttleNode.path = CGPath(ellipseIn: CGRect.init(x: -120, y: 0, width: 15, height: 8), transform: nil)
-        throttleNode.zRotation = -0.523
+        throttleNode.path = CGPath(ellipseIn: CGRect.init(x: -(navSize.width / 2 + 20), y: 0, width: 15, height: 8), transform: nil)
         throttleNode.fillColor = NSColor.white
         navBallOutline.addChild(throttleNode)
         
@@ -49,5 +50,9 @@ class Overlay: SKScene {
     
     func updateFuelLevel(with percent: Double) {
         fuelNode.level = percent
+    }
+    
+    func updateThrottleLevel(with level: CGFloat) {
+        throttleNode.zRotation = -(level * 2.0 * throttleRotation) + throttleRotation
     }
 }

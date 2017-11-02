@@ -278,8 +278,8 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         // Update overlay
         let overlay = sceneRenderer.overlaySKScene as! Overlay
         overlay.updateFuelLevel(with: currentRocket.remainingFuel() / currentRocket.initialFuel())
-        overlay.throttleNode.zRotation = CGFloat(currentRocket.throttleComponent.level * 2 * -0.523 + 0.523)
-            
+        overlay.updateThrottleLevel(with: CGFloat(currentRocket.throttleComponent.level))
+        
         // Update the previous update time to keep future calculations accurate.
         previousUpdateTime = time
     }

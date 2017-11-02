@@ -8,6 +8,15 @@
 
 import SceneKit
 
+extension BinaryInteger {
+    var degreesToRadians: CGFloat { return CGFloat(Int(self)) * .pi / 180 }
+}
+
+extension FloatingPoint {
+    var degreesToRadians: Self { return self * .pi / 180 }
+    var radiansToDegrees: Self { return self * 180 / .pi }
+}
+
 func * (left: SCNMatrix4, right: SCNVector3) -> SCNVector3 { //multiply mat4 by vec3 as if w is 0.0
     return SCNVector3(
         left.m11 * right.x + left.m21 * right.y + left.m31 * right.z,
