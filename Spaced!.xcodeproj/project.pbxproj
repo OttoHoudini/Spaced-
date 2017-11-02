@@ -83,6 +83,7 @@
 		1F8AE12B1F9B921100C43DC0 /* SceneKit Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneKit Extensions.swift"; sourceTree = "<group>"; };
 		1FD157B31FA17754004F0A02 /* Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlay.swift; sourceTree = "<group>"; };
 		1FD157BF1FA18354004F0A02 /* Overlay.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Overlay.sks; sourceTree = "<group>"; };
+		1FD15EBE1FAAC0AC0080202A /* NavBall.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = NavBall.scn; sourceTree = "<group>"; };
 		1FDC10A21FA6CFA700D27606 /* ToggleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleNode.swift; sourceTree = "<group>"; };
 		1FF491761F6B73C10081B0B0 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		1FF491771F6B73C10081B0B0 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
@@ -176,6 +177,7 @@
 		1FF491701F6B73C10081B0B0 = {
 			isa = PBXGroup;
 			children = (
+				1FD15EBE1FAAC0AC0080202A /* NavBall.scn */,
 				1FF491751F6B73C10081B0B0 /* Spaced! Shared */,
 				1FF4917F1F6B73C10081B0B0 /* Spaced! iOS */,
 				1FF491901F6B73C10081B0B0 /* Spaced! tvOS */,

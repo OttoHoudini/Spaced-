@@ -10,10 +10,10 @@ import SpriteKit
 import CoreGraphics
 
 class Overlay: SKScene {
-    private let fuelNode = LevelNode()
     public let sasNode = ToggleNode()
-    
-    public let throttleNode = SKShapeNode()
+ 
+    private let fuelNode = LevelNode()
+    private let throttleNode = SKShapeNode()
     private let throttleRotation = 35.degreesToRadians
 
     init(size: CGSize, controller: GameController) {
@@ -31,9 +31,19 @@ class Overlay: SKScene {
         navBallOutline.position = CGPoint(x: frame.midX, y: navSize.height / 2)
         addChild(navBallOutline)
         
+        let navBall = SK3DNode(viewportSize: navSize)
+        navBall.scnScene = controller.scene
+        let camera = navBall.scnScene?.rootNode.childNode(withName: "navCamera", recursively: true)
+        camera?.categoryBitMask
+        
+        navBall.pointOfView =
+        navBallOutline.addChild(navBall)
+        
+        // SAS Indicator
         sasNode.position = CGPoint(x: 120 * cos(3.14 / 4), y: 120 * sin(3.14 / 4))
         navBallOutline.addChild(sasNode)
         
+        // Throttle Indicator
         throttleNode.path = CGPath(ellipseIn: CGRect.init(x: -(navSize.width / 2 + 20), y: 0, width: 15, height: 8), transform: nil)
         throttleNode.fillColor = NSColor.white
         navBallOutline.addChild(throttleNode)
