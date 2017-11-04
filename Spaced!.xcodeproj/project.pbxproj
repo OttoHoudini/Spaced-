@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F2813AF1FAE2A3200059E32 /* NavBallTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2813AE1FAE29BE00059E32 /* NavBallTexture.png */; };
+		1F2813B01FAE2A3300059E32 /* NavBallTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2813AE1FAE29BE00059E32 /* NavBallTexture.png */; };
+		1F2813B11FAE2A3300059E32 /* NavBallTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2813AE1FAE29BE00059E32 /* NavBallTexture.png */; };
 		1F3ADE6D1FA3DB6E00FC44A5 /* LevelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3ADE6C1FA3DB6E00FC44A5 /* LevelNode.swift */; };
 		1F3ADE6E1FA3DB6E00FC44A5 /* LevelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3ADE6C1FA3DB6E00FC44A5 /* LevelNode.swift */; };
 		1F3ADE6F1FA3DB6E00FC44A5 /* LevelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3ADE6C1FA3DB6E00FC44A5 /* LevelNode.swift */; };
@@ -71,6 +74,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F2813AE1FAE29BE00059E32 /* NavBallTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavBallTexture.png; sourceTree = "<group>"; };
 		1F3ADE6C1FA3DB6E00FC44A5 /* LevelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNode.swift; sourceTree = "<group>"; };
 		1F8AE10A1F9A92FF00C43DC0 /* ThrottleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrottleComponent.swift; sourceTree = "<group>"; };
 		1F8AE10B1F9A92FF00C43DC0 /* RocketComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketComponent.swift; sourceTree = "<group>"; };
@@ -83,7 +87,6 @@
 		1F8AE12B1F9B921100C43DC0 /* SceneKit Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SceneKit Extensions.swift"; sourceTree = "<group>"; };
 		1FD157B31FA17754004F0A02 /* Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlay.swift; sourceTree = "<group>"; };
 		1FD157BF1FA18354004F0A02 /* Overlay.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Overlay.sks; sourceTree = "<group>"; };
-		1FD15EBE1FAAC0AC0080202A /* NavBall.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = NavBall.scn; sourceTree = "<group>"; };
 		1FDC10A21FA6CFA700D27606 /* ToggleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleNode.swift; sourceTree = "<group>"; };
 		1FF491761F6B73C10081B0B0 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		1FF491771F6B73C10081B0B0 /* Art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Art.scnassets; sourceTree = "<group>"; };
@@ -170,6 +173,7 @@
 			children = (
 				1FF491BB1F6B8BA50081B0B0 /* SimdExtensions.swift */,
 				1F8AE12B1F9B921100C43DC0 /* SceneKit Extensions.swift */,
+				1F2813AE1FAE29BE00059E32 /* NavBallTexture.png */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -177,7 +181,6 @@
 		1FF491701F6B73C10081B0B0 = {
 			isa = PBXGroup;
 			children = (
-				1FD15EBE1FAAC0AC0080202A /* NavBall.scn */,
 				1FF491751F6B73C10081B0B0 /* Spaced! Shared */,
 				1FF4917F1F6B73C10081B0B0 /* Spaced! iOS */,
 				1FF491901F6B73C10081B0B0 /* Spaced! tvOS */,
@@ -351,6 +354,7 @@
 				1FF491891F6B73C10081B0B0 /* LaunchScreen.storyboard in Resources */,
 				1FF491AD1F6B73C20081B0B0 /* Assets.xcassets in Resources */,
 				1FD157C01FA18354004F0A02 /* Overlay.sks in Resources */,
+				1F2813AF1FAE2A3200059E32 /* NavBallTexture.png in Resources */,
 				1FF491AA1F6B73C20081B0B0 /* Art.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2813B01FAE2A3300059E32 /* NavBallTexture.png in Resources */,
 				1FD157C11FA18354004F0A02 /* Overlay.sks in Resources */,
 				1FF491971F6B73C10081B0B0 /* Main.storyboard in Resources */,
 				1FF491AE1F6B73C20081B0B0 /* Assets.xcassets in Resources */,
@@ -370,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F2813B11FAE2A3300059E32 /* NavBallTexture.png in Resources */,
 				1FD157C21FA18354004F0A02 /* Overlay.sks in Resources */,
 				1FF491A51F6B73C20081B0B0 /* Main.storyboard in Resources */,
 				1FF491AF1F6B73C20081B0B0 /* Assets.xcassets in Resources */,

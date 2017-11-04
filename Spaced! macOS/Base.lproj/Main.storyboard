@@ -706,7 +706,7 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="GameViewController" customModule="Spaced_" customModuleProvider="target" sceneMemberID="viewController">
-                    <sceneView key="view" loops="NO" preferredRenderingAPI="-1" id="RvT-eo-GD2" customClass="GameViewMacOS" customModule="Spaced_" customModuleProvider="target">
+                    <sceneView key="view" loops="NO" preferredRenderingAPI="2" id="RvT-eo-GD2" customClass="GameViewMacOS" customModule="Spaced_" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="720"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import SceneKit
 import CoreGraphics
 
 class Overlay: SKScene {
@@ -15,7 +16,10 @@ class Overlay: SKScene {
     private let fuelNode = LevelNode()
     private let throttleNode = SKShapeNode()
     private let throttleRotation = 35.degreesToRadians
-
+    private let navBall = SK3DNode(viewportSize: CGSize(width: 260, height: 260))
+    
+    private let navBallCam = SCNNode()
+    
     init(size: CGSize, controller: GameController) {
         super.init(size: size)
         isUserInteractionEnabled = false
@@ -27,18 +31,23 @@ class Overlay: SKScene {
         let navSize = CGSize(width: 200, height: 200)
         let navBallOutline = SKShapeNode(ellipseOf: navSize)
         navBallOutline.strokeColor = NSColor.white
-        navBallOutline.lineWidth = 2.0
+        navBallOutline.lineWidth = 3.0
         navBallOutline.position = CGPoint(x: frame.midX, y: navSize.height / 2)
         addChild(navBallOutline)
         
-        let navBall = SK3DNode(viewportSize: navSize)
-        navBall.scnScene = controller.scene
-        let camera = navBall.scnScene?.rootNode.childNode(withName: "navCamera", recursively: true)
-        camera?.categoryBitMask
+        navBall.scnScene = SCNScene(named: "Art.scnassets/NavBall.scn")
+        let camera = SCNCamera()
+        camera.zNear = 0.5
+        let cameraNode = SCNNode()
+        cameraNode.camera = camera
+        cameraNode.position = SCNVector3.init(0, 0, 1.25)
+        navBallCam.addChildNode(cameraNode)
+        navBall.scnScene?.rootNode.addChildNode(navBallCam)
+//        navBall.pointOfView = cameraNode
         
-        navBall.pointOfView =
+        navBall.pointOfView?.categoryBitMask = BitmaskNavigationCamera
         navBallOutline.addChild(navBall)
-        
+    
         // SAS Indicator
         sasNode.position = CGPoint(x: 120 * cos(3.14 / 4), y: 120 * sin(3.14 / 4))
         navBallOutline.addChild(sasNode)
@@ -64,5 +73,10 @@ class Overlay: SKScene {
     
     func updateThrottleLevel(with level: CGFloat) {
         throttleNode.zRotation = -(level * 2.0 * throttleRotation) + throttleRotation
+    }
+    
+    func updateNavBall(with orientation: SCNQuaternion, camOrientation: SCNQuaternion) {
+        navBall.scnScene?.rootNode.childNode(withName: "navBall", recursively: true)?.orientation = orientation
+        navBallCam.orientation = camOrientation
     }
 }

@@ -50,6 +50,8 @@ class GameController: NSObject, SCNSceneRendererDelegate {
     private let spaceCamera = SCNNode()
     private let atmosphereCamera = SCNNode()
     
+    private let navNode = SCNNode()
+     
     /// Keeps track of the time for use in the update method.
     var previousUpdateTime: TimeInterval = 0
     
@@ -72,6 +74,48 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         renderer.overlaySKScene = overlay
         
         sceneRenderer.scene = scene
+        
+        setupNavBallNode()
+    }
+    
+    func setupNavBallNode() {
+        weak var weakSelf = self
+
+        let characterPositionContraint = SCNTransformConstraint.positionConstraint(
+            inWorldSpace: true, with: { (_ node: SCNNode, _ position: SCNVector3) -> SCNVector3 in
+                guard let strongSelf = weakSelf else { return position }
+                
+                guard let worldPosition = strongSelf.controlNode?.presentation.worldPosition else { return position }
+                return worldPosition
+        })
+        
+        let lookAtConstraint = SCNLookAtConstraint(target: currentSphereOfInfluence)
+        lookAtConstraint.isGimbalLockEnabled = true
+        
+//        let clockingConstraint = SCNTransformConstraint(inWorldSpace: true) { (_ node: SCNNode, _ transform: SCNMatrix4) -> SCNMatrix4 in
+//
+//            let planeNormal = simd_cross(simd_float3(0, 0, 1), node.presentation.simdConvertVector(simd_float3(0, 0, 1), to: nil))
+//
+//            let dotProduct = simd_dot(planeNormal, node.presentation.simdConvertVector(simd_float3(0, 1, 0), to: nil))
+//
+//            let angle = acos(dotProduct)
+//
+//            if angle == 0 {
+//                return transform
+//            }
+//
+//            let transformNode = SCNNode()
+//            transformNode.transform = transform
+//
+//            let q = simd_quaternion(angle, simd_float3(0, 0, 1))
+//
+//            transformNode.simdRotate(by: q, aroundTarget: node.presentation.simdPosition)
+//
+//            return transformNode.transform
+//        }
+//
+        navNode.constraints = [characterPositionContraint, lookAtConstraint]
+        scene.rootNode.addChildNode(navNode)
     }
     
     func setUpEntities() {
@@ -192,9 +236,8 @@ class GameController: NSObject, SCNSceneRendererDelegate {
 
         atmosphereLookAtTarget.addChildNode(node)
         node.name = "atmosphereCam"
-        node.simdPosition = simd_float3(30, 0, 0)
+        node.simdPosition = simd_float3(0, -35, 0)
         node.constraints = [atmosphereOrientationConstraint, lookAtTarget]
-        node.simdEulerAngles = simd_float3(1.57, 0, 1.57)
         self.scene.rootNode.addChildNode(atmosphereLookAtTarget)
     }
     
@@ -279,6 +322,9 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         let overlay = sceneRenderer.overlaySKScene as! Overlay
         overlay.updateFuelLevel(with: currentRocket.remainingFuel() / currentRocket.initialFuel())
         overlay.updateThrottleLevel(with: CGFloat(currentRocket.throttleComponent.level))
+        
+//        let q = simd_mul(navNode.presentation.simdOrientation, controlNode!.presentation.simdOrientation)
+        overlay.updateNavBall(with: navNode.presentation.orientation, camOrientation: controlNode!.presentation.orientation)
         
         // Update the previous update time to keep future calculations accurate.
         previousUpdateTime = time
