@@ -20,12 +20,12 @@ private enum TorqueDirection : UInt16 {
     
     var vector : float3 {
         switch self {
-        case .yawLeft: return float3(0, 1, 0)
-        case .yawRight: return float3(0, -1, 0)
-        case .pitchUp: return float3(-1, 0, 0)
-        case .pitchDown: return float3(1, 0, 0)
-        case .rollLeft: return float3(0, 0, -1)
-        case .rollRight: return float3(0, 0, 1)
+        case .yawLeft: return float3(0, -1, 0)
+        case .yawRight: return float3(0, 1, 0)
+        case .pitchUp: return float3(1, 0, 0)
+        case .pitchDown: return float3(-1, 0, 0)
+        case .rollLeft: return float3(0, 0, 1)
+        case .rollRight: return float3(0, 0, -1)
         }
     }
 }

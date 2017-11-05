@@ -31,7 +31,7 @@ class Overlay: SKScene {
         let navSize = CGSize(width: 200, height: 200)
         let navBallOutline = SKShapeNode(ellipseOf: navSize)
         navBallOutline.strokeColor = NSColor.white
-        navBallOutline.lineWidth = 3.0
+        navBallOutline.lineWidth = 4.0
         navBallOutline.position = CGPoint(x: frame.midX, y: navSize.height / 2)
         addChild(navBallOutline)
         
@@ -40,19 +40,42 @@ class Overlay: SKScene {
         camera.zNear = 0.5
         let cameraNode = SCNNode()
         cameraNode.camera = camera
-        cameraNode.position = SCNVector3.init(0, 0, 1.25)
+        cameraNode.position = SCNVector3(0, 0, 1.25)
         navBallCam.addChildNode(cameraNode)
         navBall.scnScene?.rootNode.addChildNode(navBallCam)
-//        navBall.pointOfView = cameraNode
-        
-        navBall.pointOfView?.categoryBitMask = BitmaskNavigationCamera
         navBallOutline.addChild(navBall)
     
+        let path = CGMutablePath()
+        path.move(to: CGPoint(x: -60, y: 0))
+        path.addLine(to: CGPoint(x: -20, y: 0))
+        path.addLine(to: CGPoint(x: 0, y: -20))
+        path.addLine(to: CGPoint(x: 20, y: 0))
+        path.addLine(to: CGPoint(x: 60, y: 0))
+
+        let target = SKShapeNode(path: path)
+        target.strokeColor = NSColor.orange
+        target.lineWidth = 4
+        navBallOutline.addChild(target)
+        
+        let center = SKShapeNode(circleOfRadius: 4)
+        center.strokeColor = NSColor.orange
+        center.fillColor = NSColor.orange
+        navBallOutline.addChild(center)
+        
         // SAS Indicator
         sasNode.position = CGPoint(x: 120 * cos(3.14 / 4), y: 120 * sin(3.14 / 4))
         navBallOutline.addChild(sasNode)
         
         // Throttle Indicator
+        let arcPath = CGMutablePath()
+        arcPath.addArc(center: CGPoint(), radius: -(navSize.width / 2 + 12.5), startAngle: -throttleRotation, endAngle: throttleRotation, clockwise: false)
+        let throttleBackground = SKShapeNode(path: arcPath)
+        throttleBackground.strokeColor = NSColor.lightGray
+        throttleBackground.alpha = 0.75
+        throttleBackground.lineWidth = 10
+        throttleBackground.lineCap = .round
+        navBallOutline.addChild(throttleBackground)
+        
         throttleNode.path = CGPath(ellipseIn: CGRect.init(x: -(navSize.width / 2 + 20), y: 0, width: 15, height: 8), transform: nil)
         throttleNode.fillColor = NSColor.white
         navBallOutline.addChild(throttleNode)
