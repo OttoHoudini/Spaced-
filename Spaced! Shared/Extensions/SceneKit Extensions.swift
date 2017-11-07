@@ -25,6 +25,12 @@ func * (left: SCNMatrix4, right: SCNVector3) -> SCNVector3 { //multiply mat4 by 
     )
 }
 
+extension SCNVector3 {
+    func length() -> CGFloat {
+        return sqrt(self.x * self.x + self.y * self.y + self.z * self.z)
+    }
+}
+
 extension SCNNode {
     func boundingBoxAnchor(_ axis: simd_float3 = simd_float3(0, 1, 0)) -> simd_float3 {
         let boundingBox = self.boundingBox

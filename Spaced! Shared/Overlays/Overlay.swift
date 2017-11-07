@@ -12,7 +12,9 @@ import CoreGraphics
 
 class Overlay: SKScene {
     public let sasNode = ToggleNode()
- 
+    
+    private let altimeterNode = SKLabelNode(fontNamed: "Helvetica Neue Bold")
+    private let speedNode = SKLabelNode(fontNamed: "Helvetica Neue Bold")
     private let fuelNode = LevelNode()
     private let throttleNode = SKShapeNode()
     private let throttleRotation = 35.degreesToRadians
@@ -62,6 +64,12 @@ class Overlay: SKScene {
         center.fillColor = NSColor.orange
         navBallOutline.addChild(center)
         
+        // speedOdmeter
+        speedNode.position = CGPoint(x: 110 * cos(3.14 / 2), y: 110 * sin(3.14 / 2))
+        speedNode.fontSize = 20
+        speedNode.text = "1,000"
+        navBallOutline.addChild(speedNode)
+        
         // SAS Indicator
         sasNode.position = CGPoint(x: 120 * cos(3.14 / 4), y: 120 * sin(3.14 / 4))
         navBallOutline.addChild(sasNode)
@@ -79,6 +87,12 @@ class Overlay: SKScene {
         throttleNode.path = CGPath(ellipseIn: CGRect.init(x: -(navSize.width / 2 + 20), y: 0, width: 15, height: 8), transform: nil)
         throttleNode.fillColor = NSColor.white
         navBallOutline.addChild(throttleNode)
+        
+        // Altimeter
+        altimeterNode.fontSize = 20
+        altimeterNode.text = "1,000"
+        altimeterNode.position =  CGPoint(x: altimeterNode.frame.width / 2 + 10, y: frame.maxY - altimeterNode.frame.height - 10)
+        addChild(altimeterNode)
         
         // Fuel Level
         let fuelSize = fuelNode.calculateAccumulatedFrame().size
@@ -101,5 +115,13 @@ class Overlay: SKScene {
     func updateNavBall(with orientation: SCNQuaternion, camOrientation: SCNQuaternion) {
         navBall.scnScene?.rootNode.childNode(withName: "navBall", recursively: true)?.orientation = orientation
         navBallCam.orientation = camOrientation
+    }
+    
+    func updateSpeedOdometer(with velocity: SCNVector3) {
+        speedNode.text = "\(velocity.length().rounded().description)"
+    }
+    
+    func updateAltimeter(with altitude: CGFloat) {
+        altimeterNode.text = "\(altitude.description)"
     }
 }

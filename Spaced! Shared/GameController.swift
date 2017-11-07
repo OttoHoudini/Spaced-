@@ -92,28 +92,6 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         let lookAtConstraint = SCNLookAtConstraint(target: currentSphereOfInfluence)
         lookAtConstraint.isGimbalLockEnabled = true
         
-//        let clockingConstraint = SCNTransformConstraint(inWorldSpace: true) { (_ node: SCNNode, _ transform: SCNMatrix4) -> SCNMatrix4 in
-//
-//            let planeNormal = simd_cross(simd_float3(0, 0, 1), node.presentation.simdConvertVector(simd_float3(0, 0, 1), to: nil))
-//
-//            let dotProduct = simd_dot(planeNormal, node.presentation.simdConvertVector(simd_float3(0, 1, 0), to: nil))
-//
-//            let angle = acos(dotProduct)
-//
-//            if angle == 0 {
-//                return transform
-//            }
-//
-//            let transformNode = SCNNode()
-//            transformNode.transform = transform
-//
-//            let q = simd_quaternion(angle, simd_float3(0, 0, 1))
-//
-//            transformNode.simdRotate(by: q, aroundTarget: node.presentation.simdPosition)
-//
-//            return transformNode.transform
-//        }
-//
         navNode.constraints = [characterPositionContraint, lookAtConstraint]
         scene.rootNode.addChildNode(navNode)
     }
@@ -145,6 +123,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
     
     func setupCamera() {
         setupAtmosphereCamera(atmosphereCamera)
+        setupSpaceCamera(spaceCamera)
         
         self.cameraNode.camera = SCNCamera()
         self.cameraNode.name = "mainCamera"
@@ -193,7 +172,7 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         
         spaceLookAtTarget.addChildNode(node)
         node.name = "spaceCam"
-        node.simdPosition = simd_float3(15, 0, 0)
+        node.simdPosition = simd_float3(0, -35, 0)
         node.constraints = [spaceOrientationConstraint, lookAtTarget]
         
         self.scene.rootNode.addChildNode(spaceLookAtTarget)
@@ -322,9 +301,15 @@ class GameController: NSObject, SCNSceneRendererDelegate {
         let overlay = sceneRenderer.overlaySKScene as! Overlay
         overlay.updateFuelLevel(with: currentRocket.remainingFuel() / currentRocket.initialFuel())
         overlay.updateThrottleLevel(with: CGFloat(currentRocket.throttleComponent.level))
-        
-//        let q = simd_mul(navNode.presentation.simdOrientation, controlNode!.presentation.simdOrientation)
         overlay.updateNavBall(with: navNode.presentation.orientation, camOrientation: controlNode!.presentation.orientation)
+        overlay.updateSpeedOdometer(with: (controlNode?.physicsBody!.velocity)!)
+        
+        let altitude = (controlNode?.presentation.position.length().rounded())! - 1000
+        overlay.updateAltimeter(with: altitude)
+        
+        let camera = altitude > 500 ? "spaceCam" : "atmosphereCam"
+        setActiveCamera(camera, animationDuration: 0.5)
+
         
         // Update the previous update time to keep future calculations accurate.
         previousUpdateTime = time
